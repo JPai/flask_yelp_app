@@ -8,13 +8,15 @@ term = "restaurant" #assign the term to restaurant
 @app.route("/")
 def index():
     address = request.values.get('address') #use the get method
+    e = False #No exception occurred
     businesses = None
     if address:
         try:
             businesses = get_businesses(term, address)
         except:
+            e = True
             pass
-    return render_template('index.html', address=address, businesses=businesses)
+    return render_template('index.html', address=address, businesses=businesses, e=e)
 
 @app.route('/about')
 def about():

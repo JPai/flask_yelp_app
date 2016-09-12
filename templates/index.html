@@ -5,7 +5,7 @@
     <body>
         <div class="jumbotron">
             <div class="container">
-                {% if businesses %}
+                {% if businesses and not e %}
                     <h1>The top 3 recommended restaurants around {{ address }} is:</h1>
                     {% for business in businesses %}
                         <li>
@@ -17,6 +17,14 @@
                             <input type="text" name="address" placeholder="Try another address" class="form-control">
                         </div>
                             <input type="submit" value="Submit" class="btn btn-primary">
+                    </form>
+                {% elif e %}
+                    <h1>Wow! Something wrong! Please make sure you enter a proper address!</h1>
+                    <form action="/" class="form-inline">
+                        <div class="form-group">
+                            <input type="text" name="address" placeholder="Enter the address" class="form-control">
+                        </div>
+                            <input type="submit" value="Submit" class="btn btn-primary">                        
                     </form>
                 {% else %}
                     <h1>Hello! Please enter an address and I will give you 3 recommended restaurants accordingly!</h1>
